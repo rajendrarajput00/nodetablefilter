@@ -55,9 +55,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-
-
-
 app.listen(50008, () => {
   console.log("server has started on port 50008");
 });
