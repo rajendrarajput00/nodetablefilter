@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Projects</title>
+</head>
+
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<body>
+  <table>
+    <tr>
+      <th>S.no</th>
+      <th>Client Name</th>
+      <th>Project Name</th>
+      <th>Project Cost</th>
+    </tr>
+    <% for(var i=0; i < records.length; i++) { %>
+    <tr>
+      <td><%= records[i].id %></td>
+      <td><%= records[i].client_name %></td>
+      <td><%= records[i].project_name %></td>
+      <td><%= records[i].project_cost %></td>
+    </tr>
+    <% } %>
+  </table>
+  <h3>Insert New Record</h3>
+  <form action="/submit" method="post">
+    <label for="team_name">Enter Project Name: </label>
+    <input id="team_name" type="text" name="project_name" value="">
+    <label for="team_name">Enter Client Name : </label>
+    <input id="team_name" type="text" name="client_name" value="">
+    <label for="team_name">Enter Project Cost : </label>
+    <input id="team_name" type="text" name="project_cost" value="">
+    <input type="submit" value="OK">
+  </form>
+
+  <h3>Filter</h3>
+  <form id="tableForm" action="/filter" method="post">
+    <span>
+      Filter By Client Name
+    </span>
+    <select class="selectpicker" data-style="btn-info" name="client_name">
+      <optgroup label="Select Table">
+        <% for(var i=0; i < records.length; i++) { %>
+        <option value="<%= records[i].client_name %>" name='pname'><%= records[i].client_name %></option>
+        <% } %>
+      </optgroup>
+    </select>
+    <span>
+      Filter By Cost
+    </span>
+    <select class="selectpicker" data-style="btn-info" name="project_cost">
+      <optgroup label="Select Table">
+        <% for(var i=0; i < records.length; i++) { %>
+        <option value="<%= records[i].project_cost %>" name='qname'><%= records[i].project_cost %></option>
+        <% } %>
+      </optgroup>
+    </select>
+    <span>
+      Filter By Project Name
+    </span>
+    <select class="selectpicker" data-style="btn-info" name="project_name">
+      <optgroup label="Select Table">
+        <% for(var i=0; i < records.length; i++) { %>
+        <option value="<%= records[i].project_name %>" name='wname'><%= records[i].project_name %></option>
+        <% } %>
+      </optgroup>
+    </select>
+    <input type="submit" />
+  </form>
+</body>
+<form method="get" action="/">
+  <button type="submit">Reset Filter</button>
+</form>
+
+</html>
